@@ -1,5 +1,5 @@
 # Systemback-1.9.3
-Systemback
+Systemback-source
 Simple system backup and restore application with extra features
 Systemback makes it easy to create backups of the system and the users
 configuration files. In case of problems you can easily restore the previous
