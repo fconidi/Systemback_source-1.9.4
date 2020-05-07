@@ -1,5 +1,5 @@
 /*
- * Copyright(C) 2014-2016, Franco Conidi <nemh@freemail.hu>
+ * Copyright(C) 2014-2016, Franco Conidi <edmondweblog@gmail.com>
  *
  * This file is part of the Systemback.
  *
@@ -55,7 +55,7 @@ void systemback::main()
                         return true;
 
                     return false;
-                }()) return sb::isfile("/cdrom/casper/filesystem.squashfs") || sb::isfile("/lib/live/mount/rootfs/filesystem.squashfs") ? 2
+                }()) return sb::isfile("/cdrom/casper/filesystem.squashfs") || sb::isfile("/lib/live/mount/medium/live/filesystem.squashfs") ? 2
                     : getuid() + getgid() ? 3
                     : ! sb::lock(sb::Sblock) ? 4
                     : ! sb::lock(sb::Dpkglock) ? 5
