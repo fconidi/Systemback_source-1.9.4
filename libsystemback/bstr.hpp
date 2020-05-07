@@ -1,5 +1,5 @@
 /*
- * Copyright(C) 2018-2019, Franco Conidi <edmondweblog@gmail.com>
+ * Copyright(C) 2015-2016, Franco Conidi <edmondweblog@gmail.com>
  *
  * This file is part of the Systemback.
  *
