@@ -1,5 +1,5 @@
 /*
- * Copyright(C) 2014-2016, Franco Conidi <nemh@freemail.hu>
+ * Copyright(C) 2014-2016, Franco Conidi <edmondweblog@gmail.com>
  *
  * This file is part of the Systemback.
  *
@@ -98,7 +98,7 @@ systemback::systemback() : QMainWindow(nullptr, Qt::FramelessWindowHint), ui(new
                 return 300;
             else
             {
-                if(! (sislive = sb::isfile("/cdrom/casper/filesystem.squashfs") || sb::isfile("/lib/live/mount/rootfs/filesystem.squashfs")))
+                if(! (sislive = sb::isfile("/cdrom/casper/filesystem.squashfs") || sb::isfile("/lib/live/mount/medium/live/filesystem.squashfs")))
                 {
                     if(! sb::lock(sb::Dpkglock))
                         return 301;
@@ -1727,16 +1727,13 @@ void systemback::abtreleased()
 {
     if(ui->homepage1->foregroundRole() == QPalette::Highlight)
         ui->homepage1->setForegroundRole(QPalette::Text),
-        sb::exec("su -c \"xdg-open https://sourceforge.net/projects/systemback &\" " % guname(), sb::Bckgrnd);
-    else if(ui->homepage2->foregroundRole() == QPalette::Highlight)
-        ui->homepage2->setForegroundRole(QPalette::Text),
-        sb::exec("su -c \"xdg-open https://launchpad.net/systemback &\" " % guname(), sb::Bckgrnd);
+        sb::exec("su -c \"xdg-open https://github.com/fconidi &\" " % guname(), sb::Bckgrnd);
     else if(ui->email->foregroundRole() == QPalette::Highlight)
         ui->email->setForegroundRole(QPalette::Text),
-        sb::exec("su -c \"xdg-email nemh@freemail.hu &\" " % guname(), sb::Bckgrnd);
+        sb::exec("su -c \"xdg-email edmondweblog@gmail.com &\" " % guname(), sb::Bckgrnd);
     else if(ui->donate->foregroundRole() == QPalette::Highlight)
         ui->donate->setForegroundRole(QPalette::Text),
-        sb::exec("su -c \"xdg-open 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZQ668BBR7UCEQ' &\" " % guname(), sb::Bckgrnd);
+        sb::exec("su -c \"xdg-open 'https://francoconidi.it/' &\" " % guname(), sb::Bckgrnd);
 }
 
 void systemback::foutpnt()
@@ -1909,7 +1906,7 @@ void systemback::repair()
             if(! (sb::isdir("/.systembacklivepoint") || sb::crtdir("/.systembacklivepoint"))) sb::rename("/.systembacklivepoint", "/.systembacklivepoint_" % sb::rndstr()),
                                                                                               sb::crtdir("/.systembacklivepoint");
 
-            if(! sb::mount(sb::isfile("/cdrom/casper/filesystem.squashfs") ? "/cdrom/casper/filesystem.squashfs" : "/lib/live/mount/rootfs/filesystem.squashfs", "/.systembacklivepoint", "loop")) return dialogopen(334);
+            if(! sb::mount(sb::isfile("/cdrom/casper/filesystem.squashfs") ? "/cdrom/casper/filesystem.squashfs" : "/lib/live/mount/medium/live/filesystem.squashfs", "/.systembacklivepoint", "loop")) return dialogopen(334);
 
             if(fcmp == 1)
             {
@@ -2129,7 +2126,7 @@ void systemback::systemcopy()
                 if(! sb::crtdir("/.systembacklivepoint") || intrrpt) return err();
             }
 
-            if(! sb::mount(sb::isfile("/cdrom/casper/filesystem.squashfs") ? "/cdrom/casper/filesystem.squashfs" : "/lib/live/mount/rootfs/filesystem.squashfs", "/.systembacklivepoint", "loop")) return err(ui->userdatafilescopy->isVisibleTo(ui->copypanel) ? 332 : 333);
+            if(! sb::mount(sb::isfile("/cdrom/casper/filesystem.squashfs") ? "/cdrom/casper/filesystem.squashfs" : "/lib/live/mount/medium/live/filesystem.squashfs", "/.systembacklivepoint", "loop")) return err(ui->userdatafilescopy->isVisibleTo(ui->copypanel) ? 332 : 333);
             if(intrrpt) return err();
 
             if(ui->usersettingscopy->isVisibleTo(ui->copypanel))
