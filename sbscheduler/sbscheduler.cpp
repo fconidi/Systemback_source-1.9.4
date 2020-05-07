@@ -1,5 +1,5 @@
 /*
- * Copyright(C) 2014-2016, Franco Conidi <nemh@freemail.hu>
+ * Copyright(C) 2014-2016, Franco Conidi <edmondweblog@gmail.com>
  *
  * This file is part of the Systemback.
  *
@@ -27,7 +27,7 @@ void scheduler::main()
         uchar rv(args.count() != 2 ? 1
             : sb::schdlr[1] != "false" && (sb::schdlr[1] == "everyone" || sb::right(sb::schdlr[1], -1).split(',').contains(args.at(1))) ? 2
             : getuid() + getgid() ? 3
-            : sb::isfile("/cdrom/casper/filesystem.squashfs") || sb::isfile("/lib/live/mount/rootfs/filesystem.squashfs") ? 4
+            : sb::isfile("/cdrom/casper/filesystem.squashfs") || sb::isfile("/lib/live/mount/medium/live/filesystem.squashfs") ? 4
             : ! sb::lock(sb::Schdlrlock) ? 5
             : daemon(0, 0) ? 6
             : [&]() -> uchar {

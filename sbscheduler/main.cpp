@@ -1,5 +1,5 @@
 /*
- * Copyright(C) 2014-2016, Franco Conidi <nemh@freemail.hu>
+ * Copyright(C) 2014-2016, Franco Conidi <edmondweblog@gmail.com>
  *
  * This file is part of the Systemback.
  *
