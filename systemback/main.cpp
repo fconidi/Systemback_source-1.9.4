@@ -16,25 +16,30 @@
  * Systemback. If not, see <http://www.gnu.org/licenses>.
  */
 
-#include "systemback.hpp"
-#include <QApplication>
+#include "systemback-cli.hpp"
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    switch(sb::dbglev) {
+    case sb::Alldbg:
+        sb::dbglev = sb::Nulldbg;
+        break;
+    case sb::Extdbg:
+        sb::dbglev = sb::Cextdbg;
+    }
+
+    QCoreApplication a(argc, argv);
     sb::ldtltr();
+    systemback c;
 
-    uchar rv([&a] {
-            if(qgetenv("XAUTHORITY").startsWith("/home/") && ! getuid())
-            {
-                sb::error("\n " % sb::tr("Unsafe X Window authorization!") % "\n\n " % sb::tr("Please do not use 'sudo' command.") % "\n\n");
-                return 1;
-            }
+    QTimer::singleShot(0, &c,
+#if QT_VERSION < QT_VERSION_CHECK(5, 4, 0)
+        SLOT(main())
+#else
+        &systemback::main
+#endif
+        );
 
-            systemback w;
-            w.fscrn ? w.showFullScreen() : w.show();
-            return a.exec();
-        }());
-
+    uchar rv(a.exec());
     return rv;
 }
