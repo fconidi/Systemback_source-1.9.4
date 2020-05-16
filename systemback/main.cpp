@@ -1,5 +1,5 @@
 /*
- * Copyright(C) 2014-2016, Franco Conidi <edmondweblog@gmail.com>
+ * Copyright(C) 2018-2020, Franco Conidi <edmondweblog@gmail.com>
  *
  * This file is part of the Systemback.
  *
@@ -16,30 +16,25 @@
  * Systemback. If not, see <http://www.gnu.org/licenses>.
  */
 
-#include "systemback-cli.hpp"
+#include "systemback.hpp"
+#include <QApplication>
 
 int main(int argc, char *argv[])
 {
-    switch(sb::dbglev) {
-    case sb::Alldbg:
-        sb::dbglev = sb::Nulldbg;
-        break;
-    case sb::Extdbg:
-        sb::dbglev = sb::Cextdbg;
-    }
-
-    QCoreApplication a(argc, argv);
+    QApplication a(argc, argv);
     sb::ldtltr();
-    systemback c;
 
-    QTimer::singleShot(0, &c,
-#if QT_VERSION < QT_VERSION_CHECK(5, 4, 0)
-        SLOT(main())
-#else
-        &systemback::main
-#endif
-        );
+    uchar rv([&a] {
+            if(qgetenv("XAUTHORITY").startsWith("/home/") && ! getuid())
+            {
+                sb::error("\n " % sb::tr("Unsafe X Window authorization!") % "\n\n " % sb::tr("Please do not use 'sudo' command.") % "\n\n");
+                return 1;
+            }
 
-    uchar rv(a.exec());
+            systemback w;
+            w.fscrn ? w.showFullScreen() : w.show();
+            return a.exec();
+        }());
+
     return rv;
 }
