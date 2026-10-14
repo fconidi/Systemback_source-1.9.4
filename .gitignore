@@ -1,0 +1,13 @@
+
+
+# Internal agent documents stay local and must never be published.
+[Aa][Gg][Ee][Nn][Tt][Ss]*.[Mm][Dd]
+[Cc][Ll][Aa][Uu][Dd][Ee]*.[Mm][Dd]
+[Hh][Aa][Nn][Dd][Oo][Ff][Ff]*.[Mm][Dd]
+[Hh][Aa][Nn][Hh][Oo][Ff][Ff]*.[Mm][Dd]
+[Mm][Ee][Mm][Oo][Rr][Yy]*.[Mm][Dd]
+[Ss][Pp][Ee][Cc]*.[Mm][Dd]
+.remember/
+.claude/
+.codex/
+.agents/
