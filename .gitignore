@@ -11,3 +11,18 @@
 .claude/
 .codex/
 .agents/
+
+# Local planning, session notes and generated analysis reports.
+.superpowers/
+docs/superpowers/
+graphify-out/
+_wip-test/
+SESSION-NOTES*.[Mm][Dd]
+STATO*.[Mm][Dd]
+VALIDATION*.[Mm][Dd]
+[Tt][Aa][Ss][Kk][Ss]/*.md
+[Ss][Pp][Ee][Cc][Ss]/*.md
+[Pp][Ll][Aa][Nn][Ss]/*.md
+[Ss][Ee][Ss][Ss][Ii][Oo][Nn]*.md
+[Aa][Nn][Aa][Ll][Ii][Ss][Ii]*.md
+[Cc][Oo][Dd][Ee][Xx]*.md
